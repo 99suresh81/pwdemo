@@ -24,9 +24,4 @@ yarn-error.log*
 dist/
 build/
 
-# Environment variables file
-.env
 
-# Optional lock files if you want to exclude them (usually keep them)
- package-lock.json
- yarn.lock
