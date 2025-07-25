@@ -1,0 +1,38 @@
+name: Playwright Tests in Docker with Allure on EC2
+
+on:
+  push:
+    branches:
+      - main  # or your target branch
+
+jobs:
+  test:
+    name: Run Playwright with Allure in Docker on EC2
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p allure-results allure-report
+
+      - name: Run Playwright tests in Docker with Allure
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/work \
+            -w /work \
+            mcr.microsoft.com/playwright:v1.44.0-jammy \
+            bash -c "
+              npm ci &&
+              npx playwright install --with-deps &&
+              npx playwright test --reporter=line,allure-playwright &&
+              npx allure generate allure-results --clean -o allure-report
+            "
+
+      - name: Upload Allure report (HTML)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/

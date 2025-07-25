@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","30957","Login and navigate to All Items in saucedemo","","Wed Jul 23 18:08:47 IST 2025","broken","Wed Jul 23 18:09:18 IST 2025","","saucedemo.test.js","",""
+"","4491","Login and navigate to All Items in saucedemo","","Wed Jul 23 19:42:40 IST 2025","passed","Wed Jul 23 19:42:45 IST 2025","","tests\saucedemo.test.js","",""
