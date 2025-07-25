@@ -61,6 +61,7 @@ export class SaucedemoPage {
 
   async closeMenu() {
     await this.page.click(this.locators.closeMenuButton);
+    console.log('Menu closed successfully');
   }
 }
 
