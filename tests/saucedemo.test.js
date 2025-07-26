@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { SaucedemoPage } from '../pages/saucedemo.page.js';
-import { readCSV, readProperties } from '../Utilities/CommonOperations.js';
+import { readCSV, readProperties } from '../utilities_helper/commonOperations.js';
 import path from 'path';
 
 const locators = readProperties(path.resolve('locators/demopage.properties'));
