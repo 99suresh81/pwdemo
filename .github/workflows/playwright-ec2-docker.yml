@@ -1,4 +1,4 @@
-name: Playwright Tests in Docker with Allure on EC2
+name: Playwright Tests with Allure on EC2
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   test:
-    name: Run Playwright with Allure in Docker on EC2
-    runs-on: self-hosted
+    name: Run Playwright with Allure on EC2
+    runs-on: github-hosted
 
     steps:
       - name: Checkout repository
