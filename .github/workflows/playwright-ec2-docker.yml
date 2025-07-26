@@ -18,6 +18,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'  
+          java-version: '17'       
+
+      - name: Verify Java installation
+        run: |
+          java -version
+          javac -version
+
       - name: Install dependencies and run tests
         run: |
           npm ci
