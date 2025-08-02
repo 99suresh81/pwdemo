@@ -44,10 +44,16 @@ jobs:
           name: allure-report
           path: allure-report/
 
-      - name: Install AWS CLI
+      - name: Preconfigure tzdata and install AWS CLI
         if: always()
         run: |
-          apt-get update && apt-get install -y awscli
+          export DEBIAN_FRONTEND=noninteractive
+          echo "tzdata tzdata/Areas select Etc" | debconf-set-selections
+          echo "tzdata tzdata/Zones/Etc select UTC" | debconf-set-selections
+          apt-get update
+          apt-get install -y tzdata
+          dpkg-reconfigure --frontend noninteractive tzdata
+          apt-get install -y awscli
 
       - name: Configure AWS credentials
         if: always()
