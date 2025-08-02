@@ -10,7 +10,6 @@ export class SaucedemoPage {
   constructor(page, locators) {
     this.page = page;
     this.locators = locators;
-    
   }
 
   async goto() {
