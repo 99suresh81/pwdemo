@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     name: Run Playwright with Allure on EC2
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     container:
       image: mcr.microsoft.com/playwright:v1.44.0-jammy
