@@ -47,4 +47,24 @@ jobs:
       - name: Install AWS CLI
         if: always()
         run: |
-          apt-get update && apt-get install -y awsc
+          apt-get update && apt-get install -y awscli
+
+      - name: Configure AWS credentials
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set region "$AWS_REGION"
+
+      - name: Upload Allure report to S3 with timestamp
+        if: always()
+        env:
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+        run: |
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          aws s3 cp --recursive allure-report/ "s3://$S3_BUCKET_NAME/allure-report/$TIMESTAMP/"
+          echo "Uploaded Allure report to s3://$S3_BUCKET_NAME/allure-report/$TIMESTAMP/"
