@@ -3,6 +3,7 @@ import { SaucedemoPage } from '../pages/saucedemo.page.js';
 import { readCSV, readProperties } from '../utilities_helper/commonOperations.js';
 import path from 'path';
 
+
 const locators = readProperties(path.resolve('locators/demopage.properties'));
 const testDataArr = readCSV(path.resolve('./testdata.csv'));
 const testData = testDataArr[0];
